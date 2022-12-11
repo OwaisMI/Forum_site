@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+
+    <!-- {* Medium editor Cdn *} -->
+    <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+
+
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link 
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" 
+  rel="stylesheet"  type='text/css'>
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Russo+One&family=Sora:wght@400;600&display=swap" rel="stylesheet"><!-- Medium Style Editor -->
+<script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+
+
+<link rel="stylesheet" href="{% static 'css/blog.css' %}">
+
+<title>Document</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg techfont custom-navbar" style="width: 75%;">
+<div class="container">
+    <ul class="navbar-nav mr-auto">
+
+    
+    <li><a href="{% url  'list' %}" class="navbar-brand bigbrand" >My Blog</a></li>
+
+    <li><a href="{% url  'list' %}" class="nav-link">Posts <i class="fa-solid fa-envelope"></i></a></li>
+    <li><a href="{% url  'about' %}" class="nav-link">About</a></li>
+
+    <ul class="navbar-nav navbar-right">
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'create-post' %}" class="nav-link">New Post<i class="fa fa-pencil"></i></a></li>
+        <li><a href="{% url 'draft' %}" class="nav-link">Drafts<i class="fa fa-regular fa-shelves-empty"></i></a></li>
+        <li><a href="{% url 'logout' %}" class="nav-link">Logout</a></li>
+        <li>
+            <a href="" class="nav-link">Hello {{user.username}}</a>
+        </li>
+        {% else %}
+        <li><a href="{% url 'login' %}" class="nav-link navbar-right mg-auto p-auto">
+           
+                <i class="fa-solid fa-user "></i>
+        
+        </a></li>
+
+        {% endif %}
+       
+            
+       
+    </ul>
+</div>
+</nav>
+  
+    <main>
+        <svg class="ip" viewBox="0 0 256 128" width="256px" height="128px" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="grad1" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#5ebd3e" />
+                    <stop offset="33%" stop-color="#ffb900" />
+                    <stop offset="67%" stop-color="#f78200" />
+                    <stop offset="100%" stop-color="#e23838" />
+                </linearGradient>
+                <linearGradient id="grad2" x1="1" y1="0" x2="0" y2="0">
+                    <stop offset="0%" stop-color="#e23838" />
+                    <stop offset="33%" stop-color="#973999" />
+                    <stop offset="67%" stop-color="#009cdf" />
+                    <stop offset="100%" stop-color="#5ebd3e" />
+                </linearGradient>
+            </defs>
+            <g fill="none" stroke-linecap="round" stroke-width="16">
+                <g class="ip__track" stroke="#ddd">
+                    <path d="M8,64s0-56,60-56,60,112,120,112,60-56,60-56"/>
+                    <path d="M248,64s0-56-60-56-60,112-120,112S8,64,8,64"/>
+                </g>
+                <g stroke-dasharray="180 656">
+                    <path class="ip__worm1" stroke="url(#grad1)" stroke-dashoffset="0" d="M8,64s0-56,60-56,60,112,120,112,60-56,60-56"/>
+                    <path class="ip__worm2" stroke="url(#grad2)" stroke-dashoffset="358" d="M248,64s0-56-60-56-60,112-120,112S8,64,8,64"/>
+                </g>
+            </g>
+        </svg>
+    </main>
+
+    <div class="content container">
+        {% block body %}
+
+        <h1>Forum Page</h1>
+       {% endblock %}
+    </div>
+
+
+</body>
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+</html>

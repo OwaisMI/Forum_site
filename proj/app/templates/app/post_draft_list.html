@@ -1,0 +1,14 @@
+{% extends 'app/index.html' %}
+{% block body %}
+{% for post in posts %}
+<h1>Draft List</h1>
+<div class="post">
+    <p class="date">created: {{post.created_date|date:'d-m-y'}}</p>
+    <h1><a href="{% url 'post_detail' pk=post.pk %}">{{post.title}}</a></h1>
+    <p>{{post.text|truncatechars:200}}</p>
+</div>
+{% else %}
+<h1>Please Login</h1>
+<a href="{% url 'login' %}" class="btn btn-primary">Login Page</a>
+{% endfor %}
+{% endblock %}

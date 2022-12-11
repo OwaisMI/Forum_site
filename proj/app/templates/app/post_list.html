@@ -1,0 +1,36 @@
+{% extends 'app/index.html' %}
+{% block body %}
+<div class="centerstage">
+    <ul>
+        {% for posts in object_list %}
+        <h4 id="post" > {{posts.title}}</h4>
+        </a> 
+
+
+        <div class="date">
+            <p>Published on: {{post.published|date:'D M Y'}}</p>
+        </div>
+
+        <a href="{% url 'comment' pk=posts.id %}">Comments: {{post.approve_comments.count}}</a>
+
+        <p id="post_text" onclick="show_text()"> {{posts.text}}</p>
+       <a href="{% url 'delete' pk=posts.id %}">
+        
+        <button type="submit" class="btn btn-danger">Delete</button> 
+    
+       </a>
+    
+        {% endfor %}
+    
+    </ul>
+</div>
+
+
+
+<script>
+   function show_text(){
+    // document.getElementById('post').innerHTML = '{{posts.text}}'
+    document.getElementById('post_text').style.color = 'blue'
+   }
+</script>
+{% endblock %}
